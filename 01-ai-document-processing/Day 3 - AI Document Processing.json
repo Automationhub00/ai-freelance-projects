@@ -1,0 +1,496 @@
+{
+  "name": "Day 3 - AI Document Processing",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Invoice Upload",
+        "formDescription": "Upload an invoice PDF or image for AI processing.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Invoice File",
+              "fieldType": "file",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        -144,
+        -224
+      ],
+      "id": "d2b043c1-676e-4e10-bba2-38485dc74244",
+      "name": "On form submission",
+      "webhookId": "bfde010e-2f20-4b4a-9321-f3ee8114383b"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "binaryPropertyName": "Invoice_File",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -16,
+        0
+      ],
+      "id": "ab31055f-e6ab-4730-bd2e-bc3d6416eeff",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.text }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "vendor_name",
+              "description": "Extract only the vendor/company name explicitly written in the document. If missing, return an empty string \"\". Never infer, invent, generate, or guess a value."
+            },
+            {
+              "name": "invoice_number",
+              "description": "Extract only the invoice number explicitly written in the document. If missing, return an empty string \"\". Never infer, invent, generate, or guess a value."
+            },
+            {
+              "name": "invoice_date",
+              "description": "Extract only the invoice date explicitly written in the document. Prefer YYYY-MM-DD. If missing, return an empty string \"\". Never infer or guess a date."
+            },
+            {
+              "name": "due_date",
+              "description": "xtract only the due date explicitly written in the document. Prefer YYYY-MM-DD. If missing, return an empty string \"\". Never calculate, infer, or guess a due date."
+            },
+            {
+              "name": "customer_name",
+              "description": "Extract only the customer or bill-to name explicitly written in the document. If missing, return an empty string \"\". Never infer, invent, or guess a value."
+            },
+            {
+              "name": "subtotal",
+              "type": "number",
+              "description": "Subtotal amount only. Return null if missing."
+            },
+            {
+              "name": "tax",
+              "type": "number",
+              "description": "Tax amount only. Return null if missing."
+            },
+            {
+              "name": "total_amount",
+              "type": "number",
+              "description": "Final total amount. Return null if missing."
+            },
+            {
+              "name": "currency",
+              "description": "Extract only the currency explicitly shown in the document, using a code such as JPY, USD, or EUR. If missing, return an empty string \"\". Never infer or guess the currency."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.2,
+      "position": [
+        144,
+        -208
+      ],
+      "id": "2d55a4ed-5450-4b2a-8784-23e27562b07a",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        144,
+        176
+      ],
+      "id": "dbdb45e2-364f-4caa-bce3-c72663699f6a",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": null,
+          "name": "",
+          "__aiGatewayManaged": true
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "16iCUSIs3irpIYY_HSQUarf6lbnVHEskW3VCpnvvx5xc",
+          "mode": "list",
+          "cachedResultName": "Day 3 Invoice Processing.",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/16iCUSIs3irpIYY_HSQUarf6lbnVHEskW3VCpnvvx5xc/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/16iCUSIs3irpIYY_HSQUarf6lbnVHEskW3VCpnvvx5xc/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Date Processed": "={{ $now.toISO() }}",
+            "Document Type": "Invoice",
+            "File Name": "={{ $('On form submission').item.binary.Invoice_File.fileName }}",
+            "Vendor Name": "={{ $json.output.vendor_name }}",
+            "Invoice Number": "={{ $json.output.invoice_number }}",
+            "Invoice Date": "={{ $json.output.invoice_date }}",
+            "Due Date": "={{ $json.output.due_date }}",
+            "Customer Name": "={{ $json.output.customer_name }}",
+            "Subtotal": "={{ $json.output.subtotal }}",
+            "Tax": "={{ $json.output.tax }}",
+            "Total Amount": "={{ $json.output.total_amount }}",
+            "Currency": "={{ $json.output.currency }}",
+            "Processing Status": " Success"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Date Processed",
+              "displayName": "Date Processed",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Document Type",
+              "displayName": "Document Type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "File Name",
+              "displayName": "File Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Vendor Name",
+              "displayName": "Vendor Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Invoice Number",
+              "displayName": "Invoice Number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Invoice Date",
+              "displayName": "Invoice Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Due Date",
+              "displayName": "Due Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer Name",
+              "displayName": "Customer Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Subtotal",
+              "displayName": "Subtotal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tax",
+              "displayName": "Tax",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Total Amount",
+              "displayName": "Total Amount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Currency",
+              "displayName": "Currency",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Processing Status",
+              "displayName": "Processing Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1024,
+        -224
+      ],
+      "id": "e6ac4362-1400-4142-9303-415cc2b8039e",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "sKZBiDQAvgEcxuWv",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "f5504c92-7633-4c1a-b8e5-79bf04ded7a4",
+              "leftValue": "={{ $json.output.vendor_name }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "0e6037d7-0a1c-419b-bd41-018a66cced03",
+              "leftValue": "={{ $json.output.invoice_number }}",
+              "rightValue": "={{ $json.output.total_amount }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "3f4b2767-03d7-418c-a3a0-1cb14d7857b4",
+              "leftValue": "={{ $json.output.total_amount.toString() }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        560,
+        -224
+      ],
+      "id": "f69fc02a-311b-4e75-af18-047d1104f90b",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "sendTo": "zhongguoinst@gmail.com",
+        "subject": "Invoice needs manual review",
+        "message": "Invoice processing failed validation.<br><br> One or more required fields are missing:<br> • Vendor Name<br> • Invoice Number<br> • Total Amount<br><br> Please review the uploaded invoice manually.",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        736,
+        -32
+      ],
+      "id": "93ac5bfe-5113-447c-8efd-5bfd52d97c92",
+      "name": "Manual Review Email",
+      "webhookId": "adf9b6d9-b37f-46e2-bc23-3459ca019da5",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "M6ceqBMLoK84zHsf",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "zhongguoinst@gmail.com",
+        "subject": "Invoice processed successfully",
+        "message": "=Vendor: {{ $json[\"Vendor Name\"] }} Invoice: {{ $json[\"Invoice Number\"] }} Total: {{ $json[\"Total Amount\"] }} {{ $json[\"Currency\"] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        960,
+        176
+      ],
+      "id": "5d0cd770-127a-4034-b804-9bb3bfa363f7",
+      "name": "Success Email",
+      "webhookId": "253cea46-499e-44d4-81b0-670077575c04",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "M6ceqBMLoK84zHsf",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Information Extractor": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Success Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Manual Review Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Success Email": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "26017031-9e17-408b-a5d3-1a7e37cc4202",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "1bf619511a4358eaf2283605070317f8759508c95f4137f7d46b33fa925a3c17"
+  },
+  "nodeGroups": [],
+  "id": "7iWbDees5akuZZVt",
+  "tags": []
+}
