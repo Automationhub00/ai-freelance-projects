@@ -72,23 +72,7 @@ nav a {
 
 nav a:hover {
   color: #e8b875;
-}
-
 /* HERO */
-
-.hero {
-  background:
-  linear-gradient(
-    90deg,
-    rgba(30, 24, 20, 0.93) 0%,
-    rgba(35, 27, 22, 0.82) 45%,
-    rgba(35, 27, 22, 0.35) 100%
-  ),
-  url("jalpan-hero.png") center/cover no-repeat;
-.hero-content {
-  max-width: 720px;
-}
-
 .hero {
   min-height: 620px;
   display: flex;
@@ -105,6 +89,10 @@ nav a:hover {
     url("jalpan-hero.png") center/cover no-repeat;
 
   color: white;
+}
+
+.hero-content {
+  max-width: 720px;
 }
 .japanese-copy {
   font-size: 20px;
