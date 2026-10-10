@@ -11,7 +11,7 @@ nav{display:flex;gap:30px;flex-wrap:wrap}
 nav a{color:#fff8ef;text-decoration:none;font-size:14px;letter-spacing:.5px;transition:color .2s}
 nav a:hover,nav a:focus{color:#f0c781}
 /* Brighter photograph on right, readable lettering on left */
-.hero{position:relative;isolation:isolate;min-height:620px;display:flex;align-items:center;padding:90px 8%;color:#fff;background-image:linear-gradient(90deg,rgba(25,20,16,.78) 0%,rgba(25,20,16,.54) 37%,rgba(25,20,16,.16) 70%,rgba(25,20,16,.04) 100%),url('jalpan-hero.png');background-position:center;background-size:cover;background-repeat:no-repeat}
+.hero{position:relative;isolation:isolate;min-height:620px;display:flex;align-items:center;padding:90px 8%;color:#fff;background-image:linear-gradient(90deg,rgba(25,20,16,.58) 0%,rgba(25,20,16,.22) 37%,rgba(25,20,16,.16) 70%,rgba(25,20,16,.0.2) 100%),url('jalpan-hero.png');background-position:center;background-size:cover;background-repeat:no-repeat}
 .hero-content{position:relative;z-index:1;max-width:650px;text-shadow:0 2px 12px rgba(0,0,0,.28)}
 .hero-kicker{margin:0 0 19px;font-size:12px;letter-spacing:2.5px;font-weight:700;color:#f2d29b}
 .hero h1{margin:0 0 22px;font-family:Georgia,'Times New Roman',serif;font-size:clamp(38px,4.7vw,66px);line-height:1.15;font-weight:600;letter-spacing:-.8px;color:#fffaf3}
