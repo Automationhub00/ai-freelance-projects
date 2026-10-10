@@ -85,8 +85,6 @@ nav a:hover {
     rgba(35, 27, 22, 0.35) 100%
   ),
   url("jalpan-hero.png") center/cover no-repeat;
-}
-
 .hero-content {
   max-width: 720px;
 }
@@ -100,16 +98,15 @@ nav a:hover {
   background:
     linear-gradient(
       90deg,
-      rgba(30, 24, 20, 0.93) 0%,
-      rgba(35, 27, 22, 0.82) 45%,
-      rgba(35, 27, 22, 0.35) 100%
+      rgba(28, 22, 18, 0.78) 0%,
+      rgba(32, 25, 20, 0.58) 45%,
+      rgba(32, 25, 20, 0.10) 100%
     ),
     url("jalpan-hero.png") center/cover no-repeat;
 
   color: white;
 }
 .japanese-copy {
-  margin: 25px 0 8px;
   font-size: 20px;
   letter-spacing: 0.04em;
   color: #fff3df;
