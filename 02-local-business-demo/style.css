@@ -39,7 +39,7 @@ footer p{margin:7px 0 0;font-size:13px;letter-spacing:1px}
 /* JALPAN exterior concept image */
 .exterior-image {
   max-width: 850px;
-  margin: 35px 0 0;
+  margin: 35px auto 0;
 }
 
 .exterior-image img {
