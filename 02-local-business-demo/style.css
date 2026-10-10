@@ -77,41 +77,37 @@ nav a:hover {
 /* HERO */
 
 .hero {
-  min-height: 620px;
-  display: flex;
-  align-items: center;
-  padding: 90px 8%;
   background:
-    linear-gradient(
-      90deg,
-      rgba(36, 29, 24, 0.94) 0%,
-      rgba(51, 37, 28, 0.83) 48%,
-      rgba(118, 76, 48, 0.48) 100%
-    ),
-    linear-gradient(135deg, #4c3428, #ae7045);
-  color: white;
+  linear-gradient(
+    90deg,
+    rgba(30, 24, 20, 0.93) 0%,
+    rgba(35, 27, 22, 0.82) 45%,
+    rgba(35, 27, 22, 0.35) 100%
+  ),
+  url("jalpan-hero.png") center/cover no-repeat;
 }
 
 .hero-content {
   max-width: 720px;
 }
 
-.hero-kicker {
-  margin: 0 0 20px;
-  font-size: 12px;
-  letter-spacing: 3px;
-  color: #efc88e;
-  font-weight: 600;
-}
+.hero {
+  min-height: 620px;
+  display: flex;
+  align-items: center;
+  padding: 90px 8%;
 
-.hero h1 {
-  margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(44px, 6vw, 72px);
-  line-height: 1.08;
-  font-weight: 500;
-}
+  background:
+    linear-gradient(
+      90deg,
+      rgba(30, 24, 20, 0.93) 0%,
+      rgba(35, 27, 22, 0.82) 45%,
+      rgba(35, 27, 22, 0.35) 100%
+    ),
+    url("jalpan-hero.png") center/cover no-repeat;
 
+  color: white;
+}
 .japanese-copy {
   margin: 25px 0 8px;
   font-size: 20px;
