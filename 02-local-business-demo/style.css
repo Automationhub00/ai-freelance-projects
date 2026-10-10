@@ -28,7 +28,7 @@ nav a:hover,nav a:focus{color:#f0c781}
 .section-label{margin:0 0 10px;color:var(--saffron);font-size:12px;font-weight:700;letter-spacing:2.8px}
 .section h2{margin:0 0 18px;font-family:Georgia,'Times New Roman',serif;font-size:clamp(30px,3.5vw,43px);font-weight:500;line-height:1.25}
 .section>p:not(.section-label):not(.small-note){max-width:720px;font-size:17px;color:#5c5047}
-.about-section{max-width:none;padding-left:max(32px,calc((100% - 986px)/2));padding-right:max(32px,calc((100% - 986px)/2));background:#f0e7db;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.about-section{max-width:none;padding-left:8%;padding-right:8%;background:#f0e7db;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .small-note{font-size:14px;color:#817469}
 footer{padding:43px 20px;text-align:center;background:#292723;color:#e9dfd4;border-top:3px solid var(--gold)}
 footer strong{display:block;font-family:Georgia,serif;font-size:26px;letter-spacing:4px;color:#f2d59f}
