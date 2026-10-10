@@ -1,262 +1,36 @@
-:root {
-  --cream: #f6f0e7;
-  --warm-white: #fffaf3;
-  --deep-brown: #2f241e;
-  --wood: #5a3a2b;
-  --saffron: #c96f32;
-  --gold: #b79552;
-  --charcoal: #262321;
-  --muted-green: #6f7f66;
-  --soft-border: #ded3c5;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: var(--cream);
-  color: var(--deep-brown);
-  line-height: 1.7;
-}
-
-/* HEADER */
-
-.site-header {
-  background: rgba(38, 35, 33, 0.97);
-  color: white;
-  padding: 18px 8%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(183, 149, 82, 0.45);
-}
-
-.brand {
-  display: flex;
-  flex-direction: column;
-}
-
-.brand-name {
-  font-size: 30px;
-  font-weight: 700;
-  letter-spacing: 4px;
-  color: #f2d49b;
-}
-
-.brand-subtitle {
-  margin-top: 3px;
-  font-size: 11px;
-  letter-spacing: 2px;
-  color: #ddd1c2;
-}
-
-nav {
-  display: flex;
-  gap: 28px;
-}
-
-nav a {
-  color: #f8f4ee;
-  text-decoration: none;
-  font-size: 14px;
-  letter-spacing: 0.6px;
-  transition: 0.2s;
-}
-
-nav a:hover {
-  color: #e8b875;
-/* HERO */
-.hero {
-  min-height: 620px;
-  display: flex;
-  align-items: center;
-  padding: 90px 8%;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(28, 22, 18, 0.78) 0%,
-      rgba(32, 25, 20, 0.58) 45%,
-      rgba(32, 25, 20, 0.10) 100%
-    ),
-    url("jalpan-hero.png") center/cover no-repeat;
-
-  color: white;
-}
-
-.hero-content {
-  max-width: 720px;
-}
-.japanese-copy {
-  font-size: 20px;
-  letter-spacing: 0.04em;
-  color: #fff3df;
-}
-
-.hero-description {
-  max-width: 580px;
-  margin: 15px 0 0;
-  font-size: 17px;
-  color: #e8ded4;
-}
-
-.hero-buttons {
-  margin-top: 34px;
-  display: flex;
-  gap: 14px;
-}
-
-.button {
-  display: inline-block;
-  padding: 13px 24px;
-  border-radius: 3px;
-  text-decoration: none;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  transition: 0.2s;
-}
-
-.primary-button {
-  background: var(--saffron);
-  color: white;
-  border: 1px solid var(--saffron);
-}
-
-.primary-button:hover {
-  background: #ad5926;
-}
-
-.secondary-button {
-  background: transparent;
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-}
-
-.secondary-button:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-/* CONTENT */
-
-.section {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 80px 28px;
-}
-
-.section-label {
-  margin: 0 0 8px;
-  font-size: 11px;
-  letter-spacing: 3px;
-  font-weight: 700;
-  color: var(--saffron);
-}
-
-.section h2 {
-  margin: 0 0 20px;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 38px;
-  font-weight: 500;
-  color: var(--deep-brown);
-}
-
-.section > p:not(.section-label):not(.small-note) {
-  max-width: 700px;
-  font-size: 17px;
-  color: #5a514b;
-}
-
-.about-section {
-  max-width: none;
-  padding-left: max(28px, calc((100% - 944px) / 2));
-  padding-right: max(28px, calc((100% - 944px) / 2));
-  background: #ede4d8;
-  border-top: 1px solid var(--soft-border);
-  border-bottom: 1px solid var(--soft-border);
-}
-
-.small-note {
-  color: #86796f;
-  font-size: 14px;
-}
-
-/* FOOTER */
-
-footer {
-  background: var(--charcoal);
-  color: #e9dfd4;
-  text-align: center;
-  padding: 40px 20px;
-  border-top: 3px solid var(--gold);
-}
-
-footer strong {
-  display: block;
-  color: #f2d49b;
-  font-size: 24px;
-  letter-spacing: 4px;
-}
-
-footer p {
-  margin: 8px 0 0;
-  font-size: 13px;
-  letter-spacing: 1px;
-}
-
-/* MOBILE */
-
-@media (max-width: 760px) {
-  .site-header {
-    padding: 16px 20px;
-    align-items: flex-start;
-    gap: 18px;
-    flex-direction: column;
-  }
-
-  nav {
-    width: 100%;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-
-  .brand-name {
-    font-size: 25px;
-  }
-
-  .hero {
-    min-height: 560px;
-    padding: 70px 22px;
-  }
-
-  .hero h1 {
-    font-size: 44px;
-  }
-
-  .japanese-copy {
-    font-size: 17px;
-  }
-
-  .hero-buttons {
-    flex-wrap: wrap;
-  }
-
-  .section {
-    padding: 60px 22px;
-  }
-
-  .about-section {
-    padding-left: 22px;
-    padding-right: 22px;
-  }
-
-  .section h2 {
-    font-size: 32px;
-  }
-}
+/* JALPAN — complete replacement for style.css */
+:root{--cream:#faf5ed;--paper:#fffdf8;--ink:#30251f;--saffron:#bc6335;--gold:#d8b675;--line:#e8dcca}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:'Segoe UI',Arial,sans-serif;line-height:1.7}
+.site-header{background:#292723;color:#fff;padding:17px 8%;display:flex;justify-content:space-between;align-items:center;gap:24px;border-bottom:3px solid var(--gold)}
+.brand{display:flex;flex-direction:column;line-height:1.3}
+.brand-name{font-family:Georgia,serif;font-size:32px;letter-spacing:5px;font-weight:bold;color:#f2d59f}
+.brand-subtitle{margin-top:6px;font-size:10px;letter-spacing:2px;color:#e9dccc}
+nav{display:flex;gap:30px;flex-wrap:wrap}
+nav a{color:#fff8ef;text-decoration:none;font-size:14px;letter-spacing:.5px;transition:color .2s}
+nav a:hover,nav a:focus{color:#f0c781}
+/* Brighter photograph on right, readable lettering on left */
+.hero{position:relative;isolation:isolate;min-height:620px;display:flex;align-items:center;padding:90px 8%;color:#fff;background-image:linear-gradient(90deg,rgba(25,20,16,.78) 0%,rgba(25,20,16,.54) 37%,rgba(25,20,16,.16) 70%,rgba(25,20,16,.04) 100%),url('jalpan-hero.png');background-position:center;background-size:cover;background-repeat:no-repeat}
+.hero-content{position:relative;z-index:1;max-width:650px;text-shadow:0 2px 12px rgba(0,0,0,.28)}
+.hero-kicker{margin:0 0 19px;font-size:12px;letter-spacing:2.5px;font-weight:700;color:#f2d29b}
+.hero h1{margin:0 0 22px;font-family:Georgia,'Times New Roman',serif;font-size:clamp(38px,4.7vw,66px);line-height:1.15;font-weight:600;letter-spacing:-.8px;color:#fffaf3}
+.japanese-copy{margin:0 0 12px;font-size:20px;font-weight:600;letter-spacing:.04em;color:#fff5e5}
+.hero-description{max-width:550px;margin:12px 0 0;font-size:17px;color:#f8eee2}
+.hero-buttons{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.button{display:inline-block;padding:12px 25px;border-radius:4px;text-decoration:none;font-size:14px;font-weight:600;letter-spacing:.4px;transition:background .2s,transform .2s}
+.button:hover{transform:translateY(-2px)}
+.primary-button{background:var(--saffron);color:white;border:1px solid var(--saffron)}
+.primary-button:hover{background:#a95027}
+.secondary-button{background:rgba(18,16,14,.18);color:white;border:1px solid rgba(255,255,255,.9)}
+.secondary-button:hover{background:rgba(255,255,255,.18)}
+.section{max-width:1050px;margin:0 auto;padding:82px 32px}
+.section-label{margin:0 0 10px;color:var(--saffron);font-size:12px;font-weight:700;letter-spacing:2.8px}
+.section h2{margin:0 0 18px;font-family:Georgia,'Times New Roman',serif;font-size:clamp(30px,3.5vw,43px);font-weight:500;line-height:1.25}
+.section>p:not(.section-label):not(.small-note){max-width:720px;font-size:17px;color:#5c5047}
+.about-section{max-width:none;padding-left:max(32px,calc((100% - 986px)/2));padding-right:max(32px,calc((100% - 986px)/2));background:#f0e7db;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.small-note{font-size:14px;color:#817469}
+footer{padding:43px 20px;text-align:center;background:#292723;color:#e9dfd4;border-top:3px solid var(--gold)}
+footer strong{display:block;font-family:Georgia,serif;font-size:26px;letter-spacing:4px;color:#f2d59f}
+footer p{margin:7px 0 0;font-size:13px;letter-spacing:1px}
+@media(max-width:760px){.site-header{padding:17px 22px;flex-direction:column;align-items:flex-start;gap:14px}.brand-name{font-size:27px}nav{gap:22px}.hero{min-height:590px;padding:70px 22px;background-image:linear-gradient(90deg,rgba(25,20,16,.80) 0%,rgba(25,20,16,.55) 60%,rgba(25,20,16,.28) 100%),url('jalpan-hero.png');background-position:60% center}.hero h1{font-size:clamp(35px,9vw,49px)}.hero-kicker{font-size:11px}.japanese-copy{font-size:17px}.hero-description{font-size:16px}.section{padding:64px 22px}.about-section{padding-left:22px;padding-right:22px}}
