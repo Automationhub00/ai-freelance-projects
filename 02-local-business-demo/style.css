@@ -34,3 +34,24 @@ footer{padding:43px 20px;text-align:center;background:#292723;color:#e9dfd4;bord
 footer strong{display:block;font-family:Georgia,serif;font-size:26px;letter-spacing:4px;color:#f2d59f}
 footer p{margin:7px 0 0;font-size:13px;letter-spacing:1px}
 @media(max-width:760px){.site-header{padding:17px 22px;flex-direction:column;align-items:flex-start;gap:14px}.brand-name{font-size:27px}nav{gap:22px}.hero{min-height:590px;padding:70px 22px;background-image:linear-gradient(90deg,rgba(25,20,16,.80) 0%,rgba(25,20,16,.55) 60%,rgba(25,20,16,.28) 100%),url('jalpan-hero.png');background-position:60% center}.hero h1{font-size:clamp(35px,9vw,49px)}.hero-kicker{font-size:11px}.japanese-copy{font-size:17px}.hero-description{font-size:16px}.section{padding:64px 22px}.about-section{padding-left:22px;padding-right:22px}}
+
+
+/* JALPAN exterior concept image */
+.exterior-image {
+  max-width: 850px;
+  margin: 35px auto 0;
+}
+
+.exterior-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.exterior-image figcaption {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 13px;
+  color: #766b61;
+}
