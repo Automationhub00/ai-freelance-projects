@@ -103,3 +103,9 @@ footer p{margin:7px 0 0;font-size:13px;letter-spacing:1px}
     grid-template-columns: 1fr;
   }
 }
+/* Center JALPAN exterior image */
+.about-section .exterior-image {
+  width: 100%;
+  max-width: 850px;
+  margin: 35px auto 0;
+}
