@@ -138,13 +138,36 @@
 
 
 <script>
-// Desktop mouse hover flips cards. Click/keyboard and touch tap also toggle them.
-const jalpanTouchOrKeyboard = window.matchMedia('(hover: none), (pointer: coarse)');
+// JALPAN 2.1: preserve desktop hover; auto-return touch flips after four seconds.
+// Keyboard-triggered flips stay open until activated again for easier reading.
+const jalpanFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+const jalpanFlipTimers = new WeakMap();
+
+function setJalpanCardFlip(card, flipped) {
+  card.classList.toggle('is-flipped', flipped);
+  card.setAttribute('aria-pressed', String(flipped));
+}
+
 document.querySelectorAll('.jalpan-flip-card').forEach(card => {
-  card.addEventListener('click', () => {
-    if (!jalpanTouchOrKeyboard.matches && !card.matches(':focus-visible')) return;
-    const flipped = card.classList.toggle('is-flipped');
-    card.setAttribute('aria-pressed', String(flipped));
+  card.addEventListener('click', event => {
+    // Ordinary laptop mouse clicks remain controlled by the original hover CSS.
+    if (event.detail !== 0 && jalpanFinePointer.matches) return;
+
+    clearTimeout(jalpanFlipTimers.get(card));
+    jalpanFlipTimers.delete(card);
+
+    const flipped = !card.classList.contains('is-flipped');
+    setJalpanCardFlip(card, flipped);
+
+    // Touch taps automatically return to the photo after four seconds.
+    // Keyboard activations (detail === 0) do not start a timer.
+    if (flipped && event.detail !== 0 && !jalpanFinePointer.matches) {
+      const timer = setTimeout(() => {
+        setJalpanCardFlip(card, false);
+        jalpanFlipTimers.delete(card);
+      }, 4000);
+      jalpanFlipTimers.set(card, timer);
+    }
   });
 });
 </script>
